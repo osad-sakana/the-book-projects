@@ -1,16 +1,11 @@
-const NUMBER: i32 = 5;
+const NUMBER: i32 = 30;
 
 fn main(){
-    let mut x = 5;
-    println!("The value is {x}");
+    let x = if NUMBER < 10 {
+        NUMBER
+    } else {
+        10
+    };
 
-    x = x * NUMBER;
-    println!("The value is {x}");
-
-    {
-        let x = 2;
-        println!("The value is {x}");
-    }
-
-    println!("The value is {x}");
+    println!("The value of x is: {x}");
 }

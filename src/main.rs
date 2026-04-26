@@ -1,11 +1,13 @@
-const NUMBER: i32 = 30;
-
 fn main(){
-    let x = if NUMBER < 10 {
-        NUMBER
-    } else {
-        10
+    let mut counter = 0;
+
+    let result = loop {
+        counter += 1;
+
+        if counter == 10{
+            break counter * 2;
+        }
     };
 
-    println!("The value of x is: {x}");
+    println!("The result is {result}");
 }

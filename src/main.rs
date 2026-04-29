@@ -1,6 +1,7 @@
 fn main(){
     let mut s = String::from("Hello");
     change(&mut s);
+    change(&mut s);
     println!("{}", s);
 }
 

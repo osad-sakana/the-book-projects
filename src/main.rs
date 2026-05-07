@@ -1,11 +1,19 @@
-// 宙に浮いた参照
-fn main(){
-    let reference_to_nothing = dangle();
-    println!("{}", reference_to_nothing);
+fn main() {
+    let s = String::from("hello world");
+
+    let word = first_word(&s);
+
+    println!("The first word is: {}", word);
 }
 
-fn dangle() -> String {
-    let s = String::from("Hello");
+fn first_word(s: &String) -> &str {
+    let bytes = s.as_bytes();
 
-    s // 参照を返すとスコープを抜けた時に本体が消えてしまうので所有権ごとムーブしてしまえばOK
+    for (i, &item)  in bytes.iter().enumerate() {
+        if item == b' ' {
+            return &s[..i];
+        }
+    }
+
+    &s[..]
 }

@@ -14,8 +14,15 @@ fn main() {
 
     user1.email = String::from("anotheremail@example.com");
 
-    println!("ユーザー名: {}", user1.username);
+    let user2 = User {
+        email: String::from("yamada2@example.com"),
+        ..user1 // user1の残りのフィールドをuser2にコピー
+    };
+
+    println!("ユーザー名: {}", user1.username); // user1のusernameはuser2にmoveしているので、user1.usernameは使用できない
     println!("メールアドレス: {}", user1.email);
+    println!("ユーザー名: {}", user2.username);
+    println!("メールアドレス: {}", user2.email);
 }
 
 fn build_user(email: String, username: String) -> User {

@@ -1,24 +1,17 @@
-enum IpAddrKind {
-    V4,
-    V6,
+enum IpAddr {
+    V4(String),
+    V6(String),
 }
 
-struct IpAddr {
-    kind: IpAddrKind,
-    address: String,
+fn route(ip_kind: IpAddr) {
+    // ここでIPアドレスに応じた処理をする
+    println!("Routing complete!");
 }
 
-fn main() {
-    let home = IpAddr {
-        kind: IpAddrKind::V4,
-        address: String::from("127.0.0.1"),
-    };
+fn main(){
+    let home = IpAddr::V4(String::from("127.0.0.1"));
+    let loopback = IpAddr::V6(String::from("::1"));
 
-    let loopback = IpAddr {
-        kind: IpAddrKind::V6,
-        address: String::from("::1"),
-    };
-
-    println!("Home IP address: {}", home.address);
-    println!("Loopback IP address: {}", loopback.address);
+    route(home);
+    route(loopback);
 }

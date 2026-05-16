@@ -1,17 +1,11 @@
-enum IpAddr {
-    V4(String),
+enum IpAddr{
+    V4(u8, u8, u8, u8),
     V6(String),
 }
 
-fn route(ip_kind: IpAddr) {
-    // ここでIPアドレスに応じた処理をする
-    println!("Routing complete!");
-}
-
-fn main(){
-    let home = IpAddr::V4(String::from("127.0.0.1"));
+fn main() {
+    let home = IpAddr::V4(127, 0, 0, 1);
     let loopback = IpAddr::V6(String::from("::1"));
 
-    route(home);
-    route(loopback);
+    println!("無事にインスタンスが作成されました。");
 }

@@ -1,11 +1,16 @@
 
 
 fn main() {
-    let v = vec![1, 2, 3, 4, 5];
+    let mut v = vec![1, 2, 3, 4, 5];
 
-    let does_not_exist = &v[100];
-    println!("{:?}", does_not_exist);
+    // ここで不変の借用の発生(ベクトルvの要素への不変の参照&Tが作成される)
+    let first = &v[0];
 
-    let does_not_exist = v.get(100);
-    println!("{:?}", does_not_exist);
+    // ここで可変の借用の発生(内部的にvへの可変参照&mut Tを要求)
+    v.push(6);
+
+    // 不変の借用のライフタイムが確定。
+    // これにより、firstはここまで有効であるとコンパイルに判断される
+    // コメントアウトすると、firstのライフタイムはv.push(6)の前までとなりエラーは発生しない
+    println!("The first element is: {}", first);
 }

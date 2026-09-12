@@ -1,21 +1,60 @@
-fn largest(list: &[i32]) -> &i32 {
-    let mut largest = &list[0];
+// Trait(共通の振る舞い)を定義する
+pub trait Summary {
+    fn summarize(&self) -> String;
+    fn get_author(&self) -> String;
+}
 
-    for item in list {
-        if item > largest {
-            largest = item;
-        }
+// データ構造を定義する
+pub struct NewsArticle {
+    pub headline: String,
+    pub location: String,
+    pub author: String,
+    pub content: String,
+}
+
+pub struct Tweet {
+    pub username: String,
+    pub content: String,
+    pub reply: bool,
+    pub retweet: bool,
+}
+
+// SummaryトレイトをNewsArticleとTweetに実装する
+impl Summary for NewsArticle {
+    fn summarize(&self) -> String {
+        format!("{}, by {} ({})", self.headline, self.author, self.location)
     }
-    largest
+
+    fn get_author(&self) -> String {
+        format!("{}", self.author)
+    }
+}
+
+impl Summary for Tweet {
+    fn summarize(&self) -> String {
+        format!("@{}: {}", self.username, self.content)
+    }
+
+    fn get_author(&self) -> String {
+        format!("{}", self.username)
+    }
 }
 
 fn main() {
-    let number_list = vec![34, 50, 25, 100, 65];
+    let article = NewsArticle {
+        headline: String::from("Rustはいいね"),
+        location: String::from("東京"),
+        author: String::from("田中"),
+        content: String::from("Rustは非常に便利です！"),
+    };
 
-    let result = largest(&number_list);
-    println!("The largest number is {}", result);
+    let tweet = Tweet {
+        username: String::from("佐藤"),
+        content: String::from("今日の天気はいいですね！"),
+        reply: false,
+        retweet: false,
+    };
 
-    let number_list = vec![102, 34, 6000, 89, 54, 2, 43, 8];
-    let result = largest(&number_list);
-    println!("The largest number is {}", result);
+    println!("{}", article.summarize());
+    println!("{}", tweet.summarize());
 }

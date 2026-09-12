@@ -1,6 +1,8 @@
 // Trait(共通の振る舞い)を定義する
 pub trait Summary {
-    fn summarize(&self) -> String;
+    fn summarize(&self) -> String {
+        String::from("(もっと読む)")
+    }
     fn get_author(&self) -> String;
 }
 

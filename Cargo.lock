@@ -3,6 +3,12 @@
 version = 4
 
 [[package]]
+name = "adder"
+version = "0.1.0"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "da860ef43d6a9bb0fcd5b152d96cfbc4e57bd2d5834eb92bbfe6847fb23436c7"
+
+[[package]]
 name = "cfg-if"
 version = "1.0.4"
 source = "registry+https://github.com/rust-lang/crates.io-index"
@@ -23,6 +29,7 @@ dependencies = [
 name = "guessing_game"
 version = "0.1.0"
 dependencies = [
+ "adder",
  "rand",
 ]
 
